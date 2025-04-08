@@ -33,14 +33,20 @@ export default function ToDo(){
         
     }
 
+    const handleTaskInput = (e) => {
+        if(e.key === "Enter"){
+            handleTaskAdd()
+        }
+    }
+
     return(
-        <>
+        <section className='w-[14vw]'>
             <h2 id='emptyTaskMessage' className='mb-12 text-3xl hidden'>Add a new task</h2>
-            <div className='flex justify-between mb-6'>
-                <input id='taskInput' type="text" className='bg-gray-300 text-black p-3 text-xl rounded-sm'/>
+            <div className='flex flex-col mb-6'>
+                <input id='taskInput' onKeyDown={handleTaskInput} type="text" className='bg-gray-300 mb-4 text-black p-3 text-xl rounded-sm'/>
                 <div>
-                    <button className='bg-gray-200 text-black p-3 text-xl rounded-lg' onClick={()=>handleTaskAdd(tasks)}>Add Task</button>
-                    <button className='bg-gray-200 text-black p-3 text-xl rounded-lg' onClick={()=>handleTaskAdd(tasks)}>Add Task</button>
+                    <button className='bg-gray-200 text-black p-3 text-xl rounded-lg' onClick={()=>handleTaskAdd()}>Add Task</button>
+                    <button className='ml-4 bg-green-200 text-black p-3 text-xl rounded-lg' onClick={()=>handleTaskAdd()}>Complete Task</button>
                 </div>
             </div>
             <ol className='flex flex-col'>
@@ -58,6 +64,6 @@ export default function ToDo(){
                     </label>
                 )}
             </ol>
-        </>
+        </ section>
     );
 }
