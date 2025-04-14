@@ -33,39 +33,17 @@ export default function ToDo(){
         
     }
 
-    const handleTaskInput = (e) => {
-        if(e.key === "Enter"){
-            handleTaskAdd()
-        }
-    }
-
-    const handleCompletedTask = () => {
-        let indexList = []
-        for(let i = 0; i < tasks.length; i++){
-            if(document.getElementById(i).checked){
-                indexList.push(i)
-                document.getElementById(i).checked = false;
-            }
-        }
-        let newTasks = [...tasks]
-        for(let i = 0; i < indexList.length; i++){
-            newTasks.splice(indexList[i]-i,1)
-            //worst case scenario solution just set all checkboxes to false
-        }
-        setTasks(newTasks)
-    }
-
     return(
-        <section className='w-[20vw]'>
+        <>
             <h2 id='emptyTaskMessage' className='mb-12 text-3xl hidden'>Add a new task</h2>
-            <div className='flex flex-col mb-6'>
-                <input id='taskInput' onKeyDown={handleTaskInput} type="text" className='bg-gray-300 mb-4 text-black p-3 text-xl rounded-sm'/>
+            <div className='flex justify-between mb-6'>
+                <input id='taskInput' type="text" className='bg-gray-300 text-black p-3 text-xl rounded-sm'/>
                 <div>
                     <button className='bg-gray-200 text-black p-3 text-xl rounded-lg' onClick={()=>handleTaskAdd()}>Add Task</button>
-                    <button className='ml-4 bg-green-200 text-black p-3 text-xl rounded-lg' onClick={()=>handleCompletedTask()}>Complete Task</button>
+                    <button className='bg-gray-200 text-black p-3 text-xl rounded-lg' onClick={()=>handleTaskAdd()}>Complete Task</button>
                 </div>
             </div>
-            <ol className='flex flex-col'>
+            <ol className='flex flex-col bg-[#2c2c2c] p-4 border-2 border-[#8A6043]'>
                 {tasks.map((tasks, index) =>
                     
                     
@@ -80,6 +58,6 @@ export default function ToDo(){
                     </label>
                 )}
             </ol>
-        </ section>
+        </>
     );
 }
