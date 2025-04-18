@@ -33,6 +33,22 @@ export default function ToDo(){
         
     }
 
+    const handleCompletedTask = () => {
+        let indexList = []
+        for(let i = 0; i < tasks.length; i++){
+            if(document.getElementById(i).checked){
+                indexList.push(i)
+                document.getElementById(i).checked = false;
+            }
+        }
+        let newTasks = [...tasks]
+        for(let i = 0; i < indexList.length; i++){
+            newTasks.splice(indexList[i]-i,1)
+            //worst case scenario solution just set all checkboxes to false
+        }
+        setTasks(newTasks)
+    }
+
     return(
         <>
             <h2 id='emptyTaskMessage' className='mb-12 text-3xl hidden'>Add a new task</h2>
@@ -40,7 +56,7 @@ export default function ToDo(){
                 <input id='taskInput' type="text" className='bg-gray-300 text-black p-3 text-xl rounded-sm'/>
                 <div>
                     <button className='bg-gray-200 text-black p-3 text-xl rounded-lg' onClick={()=>handleTaskAdd()}>Add Task</button>
-                    <button className='bg-gray-200 text-black p-3 text-xl rounded-lg' onClick={()=>handleTaskAdd()}>Complete Task</button>
+                    <button className='bg-gray-200 text-black p-3 text-xl rounded-lg' onClick={()=>handleCompletedTask()}>Complete Task</button>
                 </div>
             </div>
             <ol className='flex flex-col bg-[#2c2c2c] p-4 border-2 border-[#8A6043]'>
